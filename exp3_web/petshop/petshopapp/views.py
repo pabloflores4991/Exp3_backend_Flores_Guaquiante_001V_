@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import  Vehiculo
 
 # Create your views here.
 
@@ -14,3 +15,10 @@ def quienessomos(request):
 
 def signin(request):
     return render(request, 'signin.html')
+
+def parejas(request):
+    
+    vehiculos = Vehiculo.objects.all()
+    return render(request, 'parejas.html', context={'datos': vehiculos})
+
+

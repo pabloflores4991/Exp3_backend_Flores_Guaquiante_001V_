@@ -1,378 +1,234 @@
+{% extends "plantilla.html" %}
+
+
+{% block content %}
 <!DOCTYPE html>
 <html>
+    {%load static%}
     <head>
-        <!--Seccion donde se define la configuracion de las paginas-->
-        <!--vincular archivos css, js, jquery, bootstrap-->
-        <!--vincular imagenes con formato ico-->
-        <title>Pet Shop-Inicio</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
-        <link rel="stylesheet" type="text/css" href="css/estilos.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
-           rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <link rel="stylesheet" type="text/css" href="{%static 'css/estilos.css'%}">
         <script type="text/javascript">
-          window.addEventListener("load", function()
-          {
-                  $.get("https://dog.ceo/api/breeds/list",
-                      function(data){
-                          const option = document.createElement('option');
-                          const valor = "Seleccione la Raza";
-                          option.value = valor;
-                          option.text = valor;
-                          document.getElementById("miSelect").appendChild(option);
-                          $.each(data,function(i,item){
-                              for (let a=0;a<item.length-7;a++){
-                                  const option = document.createElement('option');
-                                  const valor = item[a];
-                                  option.value = valor;
-                                  option.text = valor;
-                                  document.getElementById("miSelect").appendChild(option); 
-                          
-                          }
-                          });
-  
-                      });
-                  });
-      </script>
-     
-      <script type="text/javascript">
-          window.addEventListener("load", function()
-          {
-              $.get("https://dog.ceo/api/breeds/list/all",
-                  function(data){                       
-                  try {
-                      $.each(data,function(i,item){
-                          $.each(item,function(i,mascota)
-                          {
-                                  for (let a=0;a<mascota.length;a++){
-                                  const option = document.createElement('option');
-                                  const valor = i+"/"+mascota[a];
-                                  option.value = valor;
-                                  option.text = valor;
-                                  document.getElementById("miSelect").appendChild(option); 
-                              }
-                          });   
-                      });
-                  } catch (error) {
-                      //console.log("algunas razas no tienen subrazas");
-                  }
-              });
-          });
-      </script>
-  
-  <script type="text/javascript">
-  
-      function cambiarImagen(direccion){
-           
-              var combo = direccion;
-              if(combo.selectedIndex>0){
-                  var selected = combo.options[combo.selectedIndex].text;
-                  let texto = "https://dog.ceo/api/breed/"+selected+"/images/random";
-                  $.get(texto,
-                          function(data){
-                              $.each(data,function(i,item){ 
-                                  if(item[0]!="s")
-                                      document.getElementById("imagen_perro").src=item;
-                              });
-  
-                          });
-              }
+            window.addEventListener("load", function()
+            {
+                    $.get("https://dog.ceo/api/breeds/list",
+                        function(data){
+                            const option = document.createElement('option');
+                            const valor = "Seleccione la Raza";
+                            option.value = valor;
+                            option.text = valor;
+                            document.getElementById("miSelect").appendChild(option);
+                            $.each(data,function(i,item){
+                                for (let a=0;a<item.length-7;a++){
+                                    const option = document.createElement('option');
+                                    const valor = item[a];
+                                    option.value = valor;
+                                    option.text = valor;
+                                    document.getElementById("miSelect").appendChild(option); 
+                            
+                            }
+                            });
+    
+                        });
+                    });
+        </script>
+       
+        <script type="text/javascript">
+            window.addEventListener("load", function()
+            {
+                $.get("https://dog.ceo/api/breeds/list/all",
+                    function(data){                       
+                    try {
+                        $.each(data,function(i,item){
+                            $.each(item,function(i,mascota)
+                            {
+                                    for (let a=0;a<mascota.length;a++){
+                                    const option = document.createElement('option');
+                                    const valor = i+"/"+mascota[a];
+                                    option.value = valor;
+                                    option.text = valor;
+                                    document.getElementById("miSelect").appendChild(option); 
+                                }
+                            });   
+                        });
+                    } catch (error) {
+                        //console.log("algunas razas no tienen subrazas");
+                    }
+                });
+            });
+        </script>
+    
+    <script type="text/javascript">
+    
+        function cambiarImagen(direccion){
              
-  }
-  
-  </script>
-
+                var combo = direccion;
+                if(combo.selectedIndex>0){
+                    var selected = combo.options[combo.selectedIndex].text;
+                    let texto = "https://dog.ceo/api/breed/"+selected+"/images/random";
+                    $.get(texto,
+                            function(data){
+                                $.each(data,function(i,item){ 
+                                    if(item[0]!="s")
+                                        document.getElementById("imagen_perro").src=item;
+                                });
+    
+                            });
+                }
+               
+    }
+    
+    </script>
     </head>
     <body>
-        <!--comentarios-->
-
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" >          
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            
-            <!-- logo -->
-            <a class="navbar-brand" href="index.html">
-              <img src="img/logo.jpg" width="50" height="40">
-            </a>
-            
-            <!-- enlaces -->
-            <div class="collapse navbar-collapse" id="opciones">   
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">Pet-Shop</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Carrito</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contactanos.html">Contáctanos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="quienessomos.html">Quiénes somos</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="signin.html">Sign in</a> <!--pop-up de inicio y/o creacion de usuario-->
-                  </li>          
-              </ul>
-            </div>
-        </nav>        
         <div class="container">
-            
-          <div id="carousel1" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carousel1" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel1" data-slide-to="1"></li>
-              <li data-target="#carousel1" data-slide-to="2"></li>
-            </ol>
-            <!-- diapositivas -->
-            <div class="carousel-inner">
-              <div class="carousel-item active ">
-                <img class="d-block w-100" src="img/portada6.jpg" alt="">
-                  <div class="carousel-caption">
-                  </div>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="img/portada10.jpg" alt="">
-                  <div class="carousel-caption">
-                  </div>
-              </div>
-              <div class="carousel-item">
-                  <img  class="d-block w-100" src="img/portada12.jpg" alt="">
-                  <div class="carousel-caption">
-                  </div>
-              </div>
-            </div>
-            <!-- botones de desplazamiento a izquierda y derecha -->      
-            <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Anterior</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel1" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Siguiente</span>
-            </a>
-          </div>
-        
+            <br>
+            <br>
 
-        <br>
-        <br>
-
-        
-        <br>
-
-
-        <div class="row">
-          <div class="col-md-4">
-            <h4>Productos Premium</h4>
-            <h3>Le mejor alimentación y cuidado para tu mascota.</h3>
-            <h3>Certificados por la asosiación nacional de alimentos para mascotas.</h3>
-            <center>
-              <img src="img/calidad.JPG" width="40" height="40">
-            </center> 
-            <hr>
-          </div>
-          
-            
-              <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4">
+                  <h4>Productos Premium</h4>
+                  <h3>Le mejor alimentación y cuidado para tu mascota.</h3>
+                  <h3>Certificados por la asosiación nacional de alimentos para mascotas.</h3>
+                  <center>
+                    <img src="img/calidad.JPG" width="40" height="40">
+                  </center> 
+                  <hr>
+                </div>
                 
-                <center>
-                  <h2>Identifica tu raza</h2>
-                  <select id="miSelect" onchange='cambiarImagen(document.getElementById("miSelect"));'></select>
-                </center>  
-                  <br>
-                  <img id="imagen_perro" src="img/carperr.jpg" class="mx-auto d-block" width="204" height="136">
-              </div>
-            
-          
-          <div class="col-md-4">    
-            <h4>Despacho a domicilio</h4>
-            <h3 >Por compras superiores a $100.000 </h3>
-            <h3>Solo disponible en la región Metropolitana.</h3>
-            <center>
-              <img src="img/Despacho.jpg" width="40" height="40">
-            </center>  
-            <hr>
-          </div>
-
-
-        </div>
-        </div>
-        <!--productos-->
-        <br>
-        <br>
-
-        
-        <div class="container"><!--margenes tanto izq como der-->
-          {%load static%}
-          <div class="card-colums" >
-            <div class="row" id="galeria">
-                <div class="card-group p-0">
-                    <script>
-                        var titulo = ['',
-                        'Limpiador de dientes','Traje Stitch Perro','Pijama Perro','Arnés Gato',
-                        'Hi Pro Premium Adulto','Birbo Carne Adulto','FIT Formula Gato Adulto',
-                        'Monello Cat Premium','Torre Casa Gato','Tuberete Casa Gato','Casa Madera Perro',
-                        'Fancy Pets Juguete Gato','Purina Perro Cachorro','Old Prince Perro Cachorro',
-                        'Bravecto Pulgas/Garrapatas Perro','Bravecto Pulgas Gato'];
- 
-                        var texto = ['','Juguetes para perros, limpiador de dientes Molar para mascotas, palo de cepillado, cuidado Dental para perros y Mascotas.','Disfraz Stitch perro azul talla 5XL, Disfraz Stitch perro azul talla 3XL, Disfraz Stitch perro azul talla L, Disfraz Stitch perro azul talla M.','Pijama de polar completo para perro, celeste. Tallas disponibles: M, L, XL, 2XL, 3XL, 4XL',
-                        'Arnés gato celeste cuadrille delgado, tallas disponibles: S, M, L, XL.',
-                        'Alimento Premium 100% balanceado para todas las razas. Con proteínas de alta calidad. Con Probióticos y Calcio para el desarrollo de músculos, dientes y huesos. Con antioxidantes, vitaminas y minerales para una mayor vitalidad.',
-                        'Birbo Premium Carne es un alimento nutricionalmente completo para perros adultos. El uso de ingredientes seleccionados, omegas 6 y 3 y sin aromatizantes artificiales, proporcionando una alimentación balanceada enriquecida con vitaminas y minerales, esenciales para la buena salud de su perro.',
-                        'Fit Formula Gato Adulto es un alimento que contiene todos los nutrientes esenciales para una alimentación completa y balanceda, manteniendo a su gato saludable y vigoroso. El gran valor de los ingredientes utilizados, da excelente digestibilidad, se verá reflejado en un menor volumen de heces.',
-                        'Monello Cat Salmón, Atún & Pollo es un alimento premium especial para gatos de paladar exigente, contiene taurina para el buen estado de la visión y del corazón del felino, contiene ingredientes seleccionados que previenen la formación de cálculos renales.',
-                        'Rascador Torre y Casa, este rascador te brinda la comodidad y ambientación que necesita tu gato para mantenerse feliz, siendo uno de los productos con alta calidad para que tu felino tenga la satisfacción que necesita, un rascador debe estar siempre presente en el felino puesto que este objeto permitirá a tu gato pasearse.',
-                        'Diseñado como un santuario de paz para tu felino peludo después de un día de juego. Ofrece un gran escondite para que su gato duerma y se relaje.',
-                        'La casa para perro de madera cuenta con 4 patas que la aíslan del suelo, techo con bisagras para facilitar la limpieza al interior de la casa. Además, su diseño permite una aislación térmica y una adecuada circulación de aire en su interior.',
-                        'Características: Juguetes con sonido que estimulan la curiosidad, plumas y diseño que satisface el instinto de caza, textura y dureza para afilar y desgastar uñas. ... Este juguete no es apto para niños.',
-                        'En Purina ONE® estamos convencidos de la óptima nutrición de nuestro SMARTBLEND, gracias a la mezcla de ingredientes y proteína de alta calidad te aseguramos que si haces el cambio de alimento a Purina® ONE® podrás notar cambios en la energía, digestibilidad, pelaje, ojos y salud bucal de tu mascota en 28 días. ¡Compra Purina® ONE® y comienza a ver la diferencia!',
-                        'Alimento especial para cachorro, ayuda al desarrollo cognitivo gracias al agregado de DHA un ácido graso esencial de la serie omega que estimula el desarrollo del tejido nervioso cerebral, las habilidades cognitivas y la visión. Refuerza el sistema inmune gracias a sus prebióticos, vitaminas y antioxidantes.',
-                        'Este medicamento veterinario es un insecticida y acaricida sistémico de duración prolongada que mata de forma inmediata las garrapatas (Ixodes ricinus y Rhipicephalus sanguineus adultas y jóvenes), pulgas (Ctenocephalides felis y Ctenocephalides canis) y ácaros (Demodex canis, Sarcoptes scabei y Otodectes cynotis).',
-                        'Este medicamento de uso veterinario está destinado al tratamiento y prevención de infestaciones de pulgas y para el tratamiento y control de infestaciones por garrapatas que proporciona: actividad inmediata y persistente durante 12 semanas para matar pulgas',
-                        ];
- 
-                        var precio_ant = ['','$5.990','$19.990','$14.990','$15.990','$31.990','$39.990','$32.990','$36.990','$71.990','$52.990','$149.990','$41.990','$28.990','$43.990','$24.990','$24.990'];
-                        var precio_nuevot = ['','$1.900','$15.990','$11.990','$10.990','$30.990','$34.990','$29.990','$31.990','$69.990','$48.990','$119.990','$39.990','$24.990','$38.990','$21.990','$21.990'];
- 
-                        for (let i=1;i<17;i++){
-                            galeria.innerHTML +=
-                                `
-                                <div class="card m-3" style="width:250px">
-                                    <a href="#"class="text-muted" data-toggle="modal" data-target="#identificador${i}">
-                                        <img src="img/producto${i}.jpg" class="card-img-top" width="30">
-                                        <div class="card-body">
-                                            <h5 class="text-muted" id="titulo${i}"></h5>
-                                            <div class="shop-thumb__price">
-                                            <span class="shop-thumb-price_old" id="precio_ant${i}"></span>
-                                            <span class="shop-thumb-price_new" id="precio_nuevot${i}"></span>
-                                                
-                                              
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="modal fade" id="identificador${i}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--aqui va el modal-->
-                                    <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                        <div class="modal-dialog modal-dialog centered" role="document">
-                                            <img src="img/producto${i}.jpg" alt="" class="img-fluid rounded">
-                                        </div>
-                                        <div class="text">
-                                            <h5 class="shop-thumb__title" id="2titulo${i}"></h5>
-                                            <h6 class="blocktext" id="2texto${i}"></h6>
-                                            <div class="shop-thumb__price">
-                                            <span class="shop-thumb-price_old" id="2precio_ant${i}"></span>
-                                            <span class="shop-thumb-price_new" id="2precio_nuevot${i}"></span>
-                                                <button type="submit" class="btn btn-danger" > 
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
-                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
-                                                </svg></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                `
-                                document.getElementById("precio_nuevot"+i).innerHTML = precio_nuevot[i];
-                                document.getElementById("precio_ant"+i).innerHTML = precio_ant[i];
-                                document.getElementById("titulo"+i).innerHTML = titulo[i];
-                                document.getElementById("2precio_nuevot"+i).innerHTML = precio_nuevot[i];
-                                document.getElementById("2precio_ant"+i).innerHTML = precio_ant[i];
-                                document.getElementById("2titulo"+i).innerHTML = titulo[i];
-                                document.getElementById("2texto"+i).innerHTML = texto[i];
-                                
-                        }
-                    </script>  
-                </div> 
-            </div>
-          </div>
-        </div>
-        <!--fin productos-->
-    
-
- 
-       
-     
-
-
-          
-
-        
-       <!-- / .row -->
-
-      <div class="pagination " >
-        <a href="#">&laquo;</a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
-      <hr>
-
-        <br>
-      </div>
-      </div>
-
-        <!--aqui va el pie de pagina-->
-        <footer>
-            <div class="container-fluid">
-              <div class="row">
-                  <div class="col-xs-12 col-md-6 text-left">
-                      <h6 class="text-muted">
-                        <br>Copyright &#169 2021 Pet-Shop</br>
-                        <br>All Rights Reserved</br>
-                         
-                        <br>This product is protected by copyright and distributed under</br>
-                        <br>licenses restricting copying, distribution, and decompilation.</br>
-                      </h6>
-                  </div>
-          
-                  <div class="col-xs-12 col-md-6 text-right">
-                      <h6 class="text-muted lead">ENCUENTRANOS EN LAS REDES</h6>
-                      <hr>
-                      <h6>Pablo Flores</h6>
-                      <h6>Felipe Guaquiante</h6>
-                      <br><div class="redes-footer">
-                        <a href="https://www.facebook.com/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                          </svg></a>
-                        <a href="https://twitter.com/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                          </svg></a>
-                        <a href="https://www.youtube.com/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                          </svg></a>
-                        <a href="https://instagram.com/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                      </svg></a>
-
+                  
+                    <div class="col-md-4">
+                      
+                      <center>
+                        <h2>Identifica tu raza</h2>
+                        <select id="miSelect" onchange='cambiarImagen(document.getElementById("miSelect"));'></select>
+                      </center>  
+                        <br>
+                        <img id="imagen_perro" src="{%static 'img/carperr.jpg'%}" class="mx-auto d-block" width="204" height="136">
                     </div>
-                  </div>
+                  
+                
+                <div class="col-md-4">    
+                  <h4>Despacho a domicilio</h4>
+                  <h3 >Por compras superiores a $100.000 </h3>
+                  <h3>Solo disponible en la región Metropolitana.</h3>
+                  <center>
+                    <img src="img/Despacho.jpg" width="40" height="40">
+                  </center>  
+                  <hr>
+                </div>
+      
+      
               </div>
-              <div class="row">   
+
+
+            
+        </div> <!--aca se cierra el primer container-->
+
+
+        <div class="container"><!--margenes tanto izq como der-->
+      
+            <div class="card-colums" >
+              <div class="row" id="galeria">
+                {%load static%}
+                  <div class="card-group p-0">
+                      <script>
+                          
+                          var titulo = ['',
+                          'Limpiador de dientes','Traje Stitch Perro','Pijama Perro','Arnés Gato',
+                          'Hi Pro Premium Adulto','Birbo Carne Adulto','FIT Formula Gato Adulto',
+                          'Monello Cat Premium','Torre Casa Gato','Tuberete Casa Gato','Casa Madera Perro',
+                          'Fancy Pets Juguete Gato','Purina Perro Cachorro','Old Prince Perro Cachorro',
+                          'Bravecto Pulgas/Garrapatas Perro','Bravecto Pulgas Gato'];
+   
+                          var texto = ['','Juguetes para perros, limpiador de dientes Molar para mascotas, palo de cepillado, cuidado Dental para perros y Mascotas.','Disfraz Stitch perro azul talla 5XL, Disfraz Stitch perro azul talla 3XL, Disfraz Stitch perro azul talla L, Disfraz Stitch perro azul talla M.','Pijama de polar completo para perro, celeste. Tallas disponibles: M, L, XL, 2XL, 3XL, 4XL',
+                          'Arnés gato celeste cuadrille delgado, tallas disponibles: S, M, L, XL.',
+                          'Alimento Premium 100% balanceado para todas las razas. Con proteínas de alta calidad. Con Probióticos y Calcio para el desarrollo de músculos, dientes y huesos. Con antioxidantes, vitaminas y minerales para una mayor vitalidad.',
+                          'Birbo Premium Carne es un alimento nutricionalmente completo para perros adultos. El uso de ingredientes seleccionados, omegas 6 y 3 y sin aromatizantes artificiales, proporcionando una alimentación balanceada enriquecida con vitaminas y minerales, esenciales para la buena salud de su perro.',
+                          'Fit Formula Gato Adulto es un alimento que contiene todos los nutrientes esenciales para una alimentación completa y balanceda, manteniendo a su gato saludable y vigoroso. El gran valor de los ingredientes utilizados, da excelente digestibilidad, se verá reflejado en un menor volumen de heces.',
+                          'Monello Cat Salmón, Atún & Pollo es un alimento premium especial para gatos de paladar exigente, contiene taurina para el buen estado de la visión y del corazón del felino, contiene ingredientes seleccionados que previenen la formación de cálculos renales.',
+                          'Rascador Torre y Casa, este rascador te brinda la comodidad y ambientación que necesita tu gato para mantenerse feliz, siendo uno de los productos con alta calidad para que tu felino tenga la satisfacción que necesita, un rascador debe estar siempre presente en el felino puesto que este objeto permitirá a tu gato pasearse.',
+                          'Diseñado como un santuario de paz para tu felino peludo después de un día de juego. Ofrece un gran escondite para que su gato duerma y se relaje.',
+                          'La casa para perro de madera cuenta con 4 patas que la aíslan del suelo, techo con bisagras para facilitar la limpieza al interior de la casa. Además, su diseño permite una aislación térmica y una adecuada circulación de aire en su interior.',
+                          'Características: Juguetes con sonido que estimulan la curiosidad, plumas y diseño que satisface el instinto de caza, textura y dureza para afilar y desgastar uñas. ... Este juguete no es apto para niños.',
+                          'En Purina ONE® estamos convencidos de la óptima nutrición de nuestro SMARTBLEND, gracias a la mezcla de ingredientes y proteína de alta calidad te aseguramos que si haces el cambio de alimento a Purina® ONE® podrás notar cambios en la energía, digestibilidad, pelaje, ojos y salud bucal de tu mascota en 28 días. ¡Compra Purina® ONE® y comienza a ver la diferencia!',
+                          'Alimento especial para cachorro, ayuda al desarrollo cognitivo gracias al agregado de DHA un ácido graso esencial de la serie omega que estimula el desarrollo del tejido nervioso cerebral, las habilidades cognitivas y la visión. Refuerza el sistema inmune gracias a sus prebióticos, vitaminas y antioxidantes.',
+                          'Este medicamento veterinario es un insecticida y acaricida sistémico de duración prolongada que mata de forma inmediata las garrapatas (Ixodes ricinus y Rhipicephalus sanguineus adultas y jóvenes), pulgas (Ctenocephalides felis y Ctenocephalides canis) y ácaros (Demodex canis, Sarcoptes scabei y Otodectes cynotis).',
+                          'Este medicamento de uso veterinario está destinado al tratamiento y prevención de infestaciones de pulgas y para el tratamiento y control de infestaciones por garrapatas que proporciona: actividad inmediata y persistente durante 12 semanas para matar pulgas',
+                          ];
+   
+                          var precio_ant = ['','$5.990','$19.990','$14.990','$15.990','$31.990','$39.990','$32.990','$36.990','$71.990','$52.990','$149.990','$41.990','$28.990','$43.990','$24.990','$24.990'];
+                          var precio_nuevot = ['','$1.900','$15.990','$11.990','$10.990','$30.990','$34.990','$29.990','$31.990','$69.990','$48.990','$119.990','$39.990','$24.990','$38.990','$21.990','$21.990'];
+                        
+                          for (let i=1;i<17;i++){
+                              galeria.innerHTML +=
+                                  `
+                                  <div class="card m-3" style="width:250px">
+                                      <a href="#"class="text-muted" data-toggle="modal" data-target="#identificador${i}">
+                                          <img src="{%static 'img/producto${i}.jpg'%}" class="card-img-top" width="30">
+                                          <div class="card-body">
+                                              <h5 class="text-muted" id="titulo${i}"></h5>
+                                              <div class="shop-thumb__price">
+                                              <span class="shop-thumb-price_old" id="precio_ant${i}"></span>
+                                              <span class="shop-thumb-price_new" id="precio_nuevot${i}"></span>
+                                                  
+                                                
+                                              </div>
+                                          </div>
+                                      </a>
+                                  </div>
+                                  <div class="modal fade" id="identificador${i}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--aqui va el modal-->
+                                      <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  <div class="modal-content">
+                                       <div class="modal-header">
+                                          <div class="modal-dialog modal-dialog centered" role="document">
+                                              <img src="{%static 'img/producto${i}.jpg'%}" alt="" class="img-fluid rounded">
+                                          </div>
+                                          <div class="text">
+                                              <h5 class="shop-thumb__title" id="2titulo${i}"></h5>
+                                              <h6 class="blocktext" id="2texto${i}"></h6>
+                                              <div class="shop-thumb__price">
+                                              <span class="shop-thumb-price_old" id="2precio_ant${i}"></span>
+                                              <span class="shop-thumb-price_new" id="2precio_nuevot${i}"></span>
+                                                  <button type="submit" class="btn btn-danger" > 
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                                                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+                                                  </svg></button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                                  `
+                                  document.getElementById("precio_nuevot"+i).innerHTML = precio_nuevot[i];
+                                  document.getElementById("precio_ant"+i).innerHTML = precio_ant[i];
+                                  document.getElementById("titulo"+i).innerHTML = titulo[i];
+                                  document.getElementById("2precio_nuevot"+i).innerHTML = precio_nuevot[i];
+                                  document.getElementById("2precio_ant"+i).innerHTML = precio_ant[i];
+                                  document.getElementById("2titulo"+i).innerHTML = titulo[i];
+                                  document.getElementById("2texto"+i).innerHTML = texto[i];
+                                  
+                          }
+                      </script>  
+                  </div> 
               </div>
-          
+            </div>
+
+            <div class="pagination " >
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
               </div>
-            </div>  
+              <hr>
           </div>
-          </footer>
 
-        <!--comentarios-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
+          
     </body>
-
 </html>
+{%endblock%}

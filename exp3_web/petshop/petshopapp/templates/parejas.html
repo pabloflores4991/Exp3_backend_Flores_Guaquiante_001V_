@@ -1,0 +1,38 @@
+{% extends "plantilla.html" %}
+{%load static%}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Encuentra pareja para tu mascota!</h1>
+        <div class="container">
+            <div class= "row">
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Patente</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for ve in datos%}
+                        <tr>
+                            <td>{{ve.patente}}</td>
+                            <td>{{ve.marca}}</td>
+                            <td>{{ve.modelo}}</td>
+                            <td>{{ve.categoria}}</td>
+                        </tr>
+                    {%endfor%}
+    
+                </tbody>
+    
+            </table>
+            <br>
+        </div>
+    </body>
+</html>
+{%endblock%}
