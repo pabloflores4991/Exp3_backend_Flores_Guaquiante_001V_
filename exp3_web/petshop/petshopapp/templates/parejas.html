@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
     <body>
+
         <h1>Encuentra pareja para tu mascota!</h1>
         <div class="container">
             <div class= "row">
@@ -12,19 +13,23 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Patente</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Modelo</th>
-                        <th scope="col">Categoria</th>
+                        <th scope="col">TipoMascota</th>
+                        <th scope="col">nombreMascota</th>
+                        <th scope="col">nombreDueño</th>
+                        <th scope="col">raza</th>
+                        <th scope="col">sexo</th>
+                        <th scope="col">edad</th>
                     </tr>
                 </thead>
                 <tbody>
                     {%for ve in datos%}
                         <tr>
-                            <td>{{ve.patente}}</td>
-                            <td>{{ve.marca}}</td>
-                            <td>{{ve.modelo}}</td>
-                            <td>{{ve.categoria}}</td>
+                            <td>{{ve.TipoMascota}}</td>
+                            <td>{{ve.nombreMascota}}</td>
+                            <td>{{ve.nombreDueño}}</td>
+                            <td>{{ve.raza}}</td>
+                            <td>{{ve.sexo}}</td>
+                            <td>{{ve.edad}}</td>
                         </tr>
                     {%endfor%}
     
@@ -33,6 +38,10 @@
             </table>
             <br>
         </div>
+        <br>
+        <br>
+        <br>
+
     </body>
 </html>
 {%endblock%}

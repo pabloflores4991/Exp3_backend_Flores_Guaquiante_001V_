@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, contactanos, quienessomos, signin, parejas
+from .views import index, contactanos, quienessomos, signin, parejas, crearVehiculo 
 
 urlpatterns=  [
     path('', index,name="index"),
@@ -8,5 +8,5 @@ urlpatterns=  [
     path('signin', signin, name="signin"),
     path('index', index, name="index"),
     path('parejas', parejas, name="parejas"),
-    
+    path('crearVehiculo',crearVehiculo, name="crearVehiculo"),
 ]

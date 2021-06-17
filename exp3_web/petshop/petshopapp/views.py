@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import  Vehiculo
-
+from django.shortcuts import redirect, render
+from .models import  TipoMascota, Mascota
+from .forms import MascotaForm
 # Create your views here.
 
 def index(request):
@@ -18,7 +18,19 @@ def signin(request):
 
 def parejas(request):
     
-    vehiculos = Vehiculo.objects.all()
+    vehiculos = Mascota.objects.all()
     return render(request, 'parejas.html', context={'datos': vehiculos})
+
+
+def crearVehiculo(request):
+    if request.method=='POST':
+        Mascota=MascotaForm(request.POST)
+        if Mascota.is_valid():
+            Mascota.save() #metodo que crea un neuvo objeto y reemplaza al insert
+            return redirect('parejas')
+
+    else:
+        Mascota=MascotaForm()
+    return render(request,'petshopapp/form_crearvehiculo.html',{'Mascota':Mascota})
 
 
