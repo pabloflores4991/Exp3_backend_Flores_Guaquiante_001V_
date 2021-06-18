@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
-           rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>creando vehiculos</title>
+{% extends "plantilla.html" %}
+{%load static%}
+
+{% block content %}
+
 </head>
 <body>
     <div class="container">
+        
+        <br>
         <div class="row">
-            <h1>creando Mascota</h1>
+            <h1>Busca pareja para Mascota</h1>
             <form method="POST" action="#" id="formulario">
                 {%csrf_token%}
+                <br>
+                <div class="row">
+                    {{Mascota.TipoMascota.label}}
+                    {{Mascota.TipoMascota}}
+                </div>
                 <div class="row">
                     {{Mascota.nombreMascota.label}}
                     {{Mascota.nombreMascota}}
@@ -34,17 +37,17 @@
                     {{Mascota.edad.label}}
                     {{Mascota.edad}}
                 </div>
-                <div class="row">
-                    {{Mascota.TipoMascota.label}}
-                    {{Mascota.TipoMascota}}
-                </div>
+                
                 
                 <div class="row">
-                    <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
-                    <input type="reset" class="btn btn-danger" id="Limpiar" value="Limpiar">
+                    <input type="submit" class="btn btn-danger" id="enviar" value="Crear">
+                    
+                    
                 </div>
+                <br>
             </form>
         </div>
     </div>
 </body>
 </html>
+{%endblock%}

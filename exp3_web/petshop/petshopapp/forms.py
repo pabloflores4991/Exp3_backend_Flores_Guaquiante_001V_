@@ -1,6 +1,9 @@
 from django import forms 
 from django.forms import ModelForm, widgets
-from .models import Mascota
+from .models import Mascota, TipoMascota
+from django.forms.models import ModelChoiceField
+from django.forms.widgets import Widget
+
 
 
 class MascotaForm(ModelForm): 
