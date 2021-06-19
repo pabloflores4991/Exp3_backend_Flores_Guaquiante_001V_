@@ -8,9 +8,10 @@
     <div class="container">
         
         <br>
+        <h1>Busca pareja para Mascota</h1>
         <div class="row">
-            <h1>Busca pareja para Mascota</h1>
-            <form method="POST" action="#" id="formulario">
+            
+            <form method="POST" action="#" id="formulario" >
                 {%csrf_token%}
                 <br>
                 <div class="row">
@@ -20,6 +21,7 @@
                 <div class="row">
                     {{Mascota.nombreMascota.label}}
                     {{Mascota.nombreMascota}}
+                    
                 </div>
                 <div class="row">
                     {{Mascota.nombreDueño.label}}
@@ -38,16 +40,17 @@
                     {{Mascota.edad}}
                 </div>
                 
+                <br>
                 
-                <div class="row">
-                    <input type="submit" class="btn btn-danger" id="enviar" value="Crear">
+                    <input type="submit" class="btn btn-secondary" id="enviar" value="Inscribir mascota"  >
                     
                     
-                </div>
+                
                 <br>
             </form>
         </div>
     </div>
+    <br>
 </body>
 </html>
 {%endblock%}

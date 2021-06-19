@@ -6,15 +6,22 @@
 <html>
     <body>
         <br>
-        <h1>Encuentra pareja para tu mascota!</h1>
+        <h1>¡Encuentra pareja para tu mascota!</h1>
         <br>
         <div class="container">
-            <a href="{%url 'crearMascota'%}"><img src="{%static 'img/amor.jpg'%}"></a>
-            <div class= "row">
-            </div>
-            <table  class="table">
+            <div class="row">
+                <center>
+                <a href="{%url 'crearMascota'%}"><img src="{%static 'img/amor2.png'%}" width="300" height="300"></a>
+                <a href="{%url 'crearMascota'%}" class="link-dark"><h2> Inscribe a tu mascota haciendo clic acá</h2></a>
                 
-                <thead class= "thead-dark">
+                </center>
+            </div>
+            <br>
+            <div class= "row" class="col-md-4"> 
+            </div>
+            <table  class="table" class="col-md-4">
+                
+                <thead class= "thead-dark" class="col-md-4">
                     <tr>
                         <th scope="col">TipoMascota</th>
                         <th scope="col">nombreMascota</th>

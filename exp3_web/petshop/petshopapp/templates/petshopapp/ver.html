@@ -1,43 +1,50 @@
+{% extends "plantilla.html" %}
+{%load static%}
+
+{% block content %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
-           rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ver</title>
-</head>
+<html>
 <body>
+    <div class="container">
     <div class="row">
-        <h1>Mostrando mascotas</h1>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Tipo de mascota</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">raza</th>
-                <th scope="col">Opciones</th>
-                <th scope="col"></th>
+            <h1>Listado de mascotas</h1>
+        </div>
+
+        <table class="table">
+            <thead class= "thead-dark"class="col-md-4" height="50">
                 
-                
-            </tr>
-        </thead>
-        <tbody>
-            {%for ve in mascotas%}
                 <tr>
-                    <td>{{ve.idTipoMascota}}</td>
-                    <td>{{ve.nombreMascota}}</td>
-                    <td>{{ve.raza}}</td>
-                    <td><a href="{% url 'form_mod_mascota' ve.nombreMascota%}" class="btn btn-primary">Modificar  </a></td>
-                    <td><a href="{% url 'form_del_Mascota' ve.nombreMascota%}" class="btn btn-danger">Eliminar </a></td>
+                    
+                    <th scope="col">Tipo de mascota</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">raza</th>
+                    <th scope="col">sexo</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <a href="{% url 'crearMascota' %}" class="btn btn-secondary"  >Inscribir nueva mascota</a>
                     
                 </tr>
-            {%endfor%}
+            
+            </thead >
+            <tbody  class="col-md-4">
+                {%for ve in mascotas%}
+                    <tr>
+                        <td>{{ve.TipoMascota}}</td>
+                        <td>{{ve.nombreMascota}}</td>                      
+                        <td>{{ve.raza}}</td>
+                        <td>{{ve.sexo}}</td>
+                        <td><a href="{% url 'form_mod_mascota' ve.nombreMascota%}" class="btn btn-primary">Modificar  </a></td>
+                        <td><a href="{% url 'form_del_Mascota' ve.nombreMascota%}" class="btn btn-danger">Eliminar </a></td>
+                        
+                    </tr>
+                {%endfor%}
 
-        </tbody>
-   </table>
-   <a href="{% url 'crearMascota' %}" class="btn btn-primary">Nuevo mascota</a>
+            </tbody>
+    </table>
+
+
+
+    </div>
 </body>
 </html>
+{%endblock%}

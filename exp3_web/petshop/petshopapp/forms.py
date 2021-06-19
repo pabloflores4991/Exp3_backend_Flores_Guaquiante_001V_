@@ -22,13 +22,15 @@ class MascotaForm(ModelForm):
             
         }
 
+
         widgets={
 
             'nombreMascota': forms.TextInput(
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'nombreMascota', 
-                    'id': 'nombreMascota'
+                    'id': 'nombreMascota',
+                
                 }
             ),
             'nombreDueño': forms.TextInput(
