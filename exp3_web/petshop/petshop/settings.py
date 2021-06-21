@@ -33,12 +33,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'colorfield',
+    'django.contrib.humanize',
     'petshopapp',
 ]
 
@@ -138,4 +142,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ruta en donde se almacenan las imagenes
+
+
+MEDIA_URL="/media/"
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 

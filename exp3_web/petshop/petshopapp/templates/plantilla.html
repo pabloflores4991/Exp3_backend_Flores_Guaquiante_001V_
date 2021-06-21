@@ -15,7 +15,78 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="{%static 'js/funciones.js'%}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <script src="{%static 'js/funciones.js'%}"></script>
+        <script type="text/javascript">
+          window.addEventListener("load", function()
+          {
+                  $.get("https://dog.ceo/api/breeds/list",
+                      function(data){
+                          const option = document.createElement('option');
+                          const valor = "Seleccione la Raza";
+                          option.value = valor;
+                          option.text = valor;
+                          document.getElementById("miSelect").appendChild(option);
+                          $.each(data,function(i,item){
+                              for (let a=0;a<item.length-7;a++){
+                                  const option = document.createElement('option');
+                                  const valor = item[a];
+                                  option.value = valor;
+                                  option.text = valor;
+                                  document.getElementById("miSelect").appendChild(option); 
+                          
+                          }
+                          });
+  
+                      });
+                  });
+      </script>
+     
+      <script type="text/javascript">
+          window.addEventListener("load", function()
+          {
+              $.get("https://dog.ceo/api/breeds/list/all",
+                  function(data){                       
+                  try {
+                      $.each(data,function(i,item){
+                          $.each(item,function(i,mascota)
+                          {
+                                  for (let a=0;a<mascota.length;a++){
+                                  const option = document.createElement('option');
+                                  const valor = i+"/"+mascota[a];
+                                  option.value = valor;
+                                  option.text = valor;
+                                  document.getElementById("miSelect").appendChild(option); 
+                              }
+                          });   
+                      });
+                  } catch (error) {
+                      //console.log("algunas razas no tienen subrazas");
+                  }
+              });
+          });
+      </script>
+  
+  <script type="text/javascript">
+  
+      function cambiarImagen(direccion){
+           
+              var combo = direccion;
+              if(combo.selectedIndex>0){
+                  var selected = combo.options[combo.selectedIndex].text;
+                  let texto = "https://dog.ceo/api/breed/"+selected+"/images/random";
+                  $.get(texto,
+                          function(data){
+                              $.each(data,function(i,item){ 
+                                  if(item[0]!="s")
+                                      document.getElementById("imagen_perro").src=item;
+                              });
+  
+                          });
+              }
+             
+  }
+  
+  </script>
     </head>
     <body>
         <!--comentarios-->
@@ -26,7 +97,7 @@
             </button>
             
             <!-- logo -->
-            <a class="navbar-brand" href="{%url 'index'%}">
+            <a class="navbar-brand" href="{%url 'index2'%}">
               <img src="{%static 'img/logo.jpg'%}" width="50" height="40" alt="inicio">
             </a>
             
@@ -34,7 +105,7 @@
             <div class="collapse navbar-collapse" id="opciones">   
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{%url 'index'%}">Pet-Shop</a>
+                  <a class="nav-link" href="{%url 'index2'%}">Pet-Shop</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Carrito</a>

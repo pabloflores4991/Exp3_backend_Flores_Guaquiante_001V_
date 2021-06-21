@@ -11,7 +11,7 @@
         <h1>Busca pareja para Mascota</h1>
         <div class="row">
             
-            <form method="POST" action="#" id="formulario" >
+            <form method="POST" action="#" id="formulario" enctype="multipart/form-data" >
                 {%csrf_token%}
                 <br>
                 <div class="row">
@@ -38,6 +38,10 @@
                 <div class="row">
                     {{Mascota.edad.label}}
                     {{Mascota.edad}}
+                </div>
+                <div class="row">
+                    {{Mascota.imagen.label}}
+                    {{Mascota.imagen}}
                 </div>
                 
                 <br>

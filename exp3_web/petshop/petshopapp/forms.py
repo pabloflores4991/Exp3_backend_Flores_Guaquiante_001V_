@@ -10,7 +10,8 @@ class MascotaForm(ModelForm):
 
     class Meta: 
         model = Mascota 
-        fields = ['nombreMascota', 'nombreDueño', 'raza', 'sexo', 'edad', 'TipoMascota' ]
+        fields = ['nombreMascota', 'nombreDueño', 'raza', 'sexo', 'edad', 'TipoMascota','imagen' ]
+
 
         labels={
             'nombreMascota': 'Nombre Mascota',
@@ -61,12 +62,13 @@ class MascotaForm(ModelForm):
                     'id': 'edad'
                 }
             ), 
+
             'TipoMascota': forms.Select(
                 attrs={
                     'class': 'form-control', 
                     'id':'TipoMascota'
                 }
-            ) 
+            ),
         }
 
 

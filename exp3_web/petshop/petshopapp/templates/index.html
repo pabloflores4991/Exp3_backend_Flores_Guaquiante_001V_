@@ -15,78 +15,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="{%static 'js/funciones.js'%}"></script>
-        <script type="text/javascript">
-          window.addEventListener("load", function()
-          {
-                  $.get("https://dog.ceo/api/breeds/list",
-                      function(data){
-                          const option = document.createElement('option');
-                          const valor = "Seleccione la Raza";
-                          option.value = valor;
-                          option.text = valor;
-                          document.getElementById("miSelect").appendChild(option);
-                          $.each(data,function(i,item){
-                              for (let a=0;a<item.length-7;a++){
-                                  const option = document.createElement('option');
-                                  const valor = item[a];
-                                  option.value = valor;
-                                  option.text = valor;
-                                  document.getElementById("miSelect").appendChild(option); 
-                          
-                          }
-                          });
-  
-                      });
-                  });
-      </script>
-     
-      <script type="text/javascript">
-          window.addEventListener("load", function()
-          {
-              $.get("https://dog.ceo/api/breeds/list/all",
-                  function(data){                       
-                  try {
-                      $.each(data,function(i,item){
-                          $.each(item,function(i,mascota)
-                          {
-                                  for (let a=0;a<mascota.length;a++){
-                                  const option = document.createElement('option');
-                                  const valor = i+"/"+mascota[a];
-                                  option.value = valor;
-                                  option.text = valor;
-                                  document.getElementById("miSelect").appendChild(option); 
-                              }
-                          });   
-                      });
-                  } catch (error) {
-                      //console.log("algunas razas no tienen subrazas");
-                  }
-              });
-          });
-      </script>
-  
-  <script type="text/javascript">
-  
-      function cambiarImagen(direccion){
-           
-              var combo = direccion;
-              if(combo.selectedIndex>0){
-                  var selected = combo.options[combo.selectedIndex].text;
-                  let texto = "https://dog.ceo/api/breed/"+selected+"/images/random";
-                  $.get(texto,
-                          function(data){
-                              $.each(data,function(i,item){ 
-                                  if(item[0]!="s")
-                                      document.getElementById("imagen_perro").src=item;
-                              });
-  
-                          });
-              }
-             
-  }
-  
-  </script>
+        
 
     </head>
     <body>
@@ -124,7 +53,7 @@
                   <select id="miSelect" onchange='cambiarImagen(document.getElementById("miSelect"));'></select>
                 </center>  
                   <br>
-                  <img id="imagen_perro" src="img/carperr.jpg" class="mx-auto d-block" width="204" height="136">
+                  <img id="imagen_perro" src="{%static 'img/carperr.jpg'%}" class="mx-auto d-block" width="204" height="136">
               </div>
             
           
@@ -176,13 +105,13 @@
  
                         var precio_ant = ['','$5.990','$19.990','$14.990','$15.990','$31.990','$39.990','$32.990','$36.990','$71.990','$52.990','$149.990','$41.990','$28.990','$43.990','$24.990','$24.990'];
                         var precio_nuevot = ['','$1.900','$15.990','$11.990','$10.990','$30.990','$34.990','$29.990','$31.990','$69.990','$48.990','$119.990','$39.990','$24.990','$38.990','$21.990','$21.990'];
- 
+
                         for (let i=1;i<17;i++){
                             galeria.innerHTML  +=
                                 `
                                 <div class="card m-3" style="width:250px">
                                     <a href="#"class="text-muted" data-toggle="modal" data-target="#identificador${i}">
-                                        <img src="{%static 'img/producto${i}.jpg'%}" class="card-img-top" width="30">
+                                        <img src="{%static 'petshoppap/img/producto${i}.jpg'%}" class="card-img-top" width="30">
                                         <div class="card-body">
                                             <h5 class="text-muted" id="titulo${i}"></h5>
                                             <div class="shop-thumb__price">
