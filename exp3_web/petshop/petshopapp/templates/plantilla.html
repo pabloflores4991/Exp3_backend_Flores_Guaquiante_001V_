@@ -5,7 +5,7 @@
         <!--Seccion donde se define la configuracion de las paginas-->
         <!--vincular archivos css, js, jquery, bootstrap-->
         <!--vincular imagenes con formato ico-->
-        <title>Pet Shop-Quiénes somos</title>
+        <title>Pet Shop</title>
         <link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}"> 
         <link rel="stylesheet" type="text/css" href="{%static 'css/estilos.css'%}">
         <meta charset="UTF-8">
@@ -120,8 +120,12 @@
                   <a class="nav-link" href="{%url 'parejas'%}">Cita de mascotas</a> <!--pop-up de inicio y/o creacion de usuario-->
                 </li>   
                 <li class="nav-item">
+                  <a class="nav-link" href="{%url 'ver'%}">Admin. citas</a> <!--pop-up de inicio y/o creacion de usuario-->
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{%url 'signin'%}">Sign in</a> <!--pop-up de inicio y/o creacion de usuario-->
                   </li>
+                  
 
               </ul>
             </div>

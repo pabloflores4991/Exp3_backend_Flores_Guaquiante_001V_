@@ -15,7 +15,6 @@ def quienessomos(request):
 
 def signin(request):
     return render(request, 'signin.html')
-    
 
 
 def index2(request):
@@ -24,8 +23,8 @@ def index2(request):
 
 def parejas(request):
     
-    vehiculos = Mascota.objects.all()
-    return render(request, 'parejas.html', context={'datos': vehiculos})
+    mascotas = Mascota.objects.all()
+    return render(request, 'parejas.html', context={'datos': mascotas})
 
 def Ver(request):
     mascotas = Mascota.objects.all()
@@ -63,6 +62,7 @@ def form_mod_mascota(request,id):
         'form': MascotaForm(instance=mascota)
     }
     return render(request, 'petshopapp/form_mod_mascota.html', datos)
+    
 
 
 def form_del_Mascota(request,id):

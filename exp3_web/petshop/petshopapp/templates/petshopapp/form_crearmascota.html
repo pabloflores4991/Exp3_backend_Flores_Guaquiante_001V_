@@ -11,6 +11,7 @@
         <h1>Busca pareja para Mascota</h1>
         <div class="row">
             
+                
             <form method="POST" action="#" id="formulario" enctype="multipart/form-data" >
                 {%csrf_token%}
                 <br>
@@ -45,13 +46,17 @@
                 </div>
                 
                 <br>
-                
+                <div class="d-flex justify-content-end">
+                    <input type="reset" value="Cancelar" class="btn btn-secondary" onclick="location.href='index2'" >
+                    &nbsp;
                     <input type="submit" class="btn btn-secondary" id="enviar" value="Inscribir mascota"  >
+
                     
                     
-                
+                </div>
                 <br>
             </form>
+           </div>
         </div>
     </div>
     <br>

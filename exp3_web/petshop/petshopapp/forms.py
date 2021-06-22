@@ -5,13 +5,12 @@ from django.forms.models import ModelChoiceField
 from django.forms.widgets import Widget
 
 
-
 class MascotaForm(ModelForm): 
-
+    
     class Meta: 
         model = Mascota 
         fields = ['nombreMascota', 'nombreDueño', 'raza', 'sexo', 'edad', 'TipoMascota','imagen' ]
-
+    
 
         labels={
             'nombreMascota': 'Nombre Mascota',
